@@ -6,4 +6,4 @@ p_string=text_string.split('。')
 for line in p_string:
     if re.search(regex,line) is not None:
         print(line)
-        print('---')
+
