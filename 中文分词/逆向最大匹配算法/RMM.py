@@ -18,8 +18,13 @@ class IMM(object):
                 self.dictionary.add(line)
                 if(len(line)>self.maximum):
                     self.maximum=len(line)
+
+    def reverse_word(self,word):
+        return word[::-1]
+
     def cut(self,text):
         result=[]
+        single=''
         index=len(text)
         while index>0:
             word=None
@@ -28,13 +33,19 @@ class IMM(object):
                     continue
                 piece=text[(index-size):index]
                 if piece in self.dictionary:
+                    if len(single)>0:
+                        result.append(self.reverse_word(single))
+                    single=''
                     word=piece
                     result.append(word)
                     index-=size
                     break
             if word is None:
                 index-=1
-                result.append('s->'+piece)
+                #未匹配到的单字
+                single=single+piece
+        if len(single)>0:
+            result.append(self.reverse_word(single))
         return result[::-1]
 if __name__ == '__main__':
     text='南京长江大桥人民解放军'
