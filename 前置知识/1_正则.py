@@ -59,3 +59,32 @@ for line in text_string:
         print(line)
     else:
         print('not match')
+
+#使用转义字符 \
+import re
+if re.search('\\\\','I have one nee\dle') is not None:
+    #前两个和后两个分别转义为\,然后\\表示真正的匹配\
+    print('match it')
+else:
+    print('not match')
+#原生字符串 r
+import re
+if re.search(r'\\','I have one nee\dle') is not None:
+    print('match it')
+else:
+    print('match it')
+
+#抽取文本中的数字 [0-9] [a-z] {3}重复三次
+import re
+strings=['War of 1812','There are 5280 feet to a mile','Happy New Year 2016!']
+year_strings=[]
+for string in strings:
+    if re.search('[1-2][0-9]{3}',string):
+        year_strings.append(string)
+print(year_strings)
+
+#查找出指定匹配字符
+import re
+year_string='2016 was a good year ,but 2017 will be better!'
+years=re.findall('[2][0-9]{3}',year_string)
+print(years)
